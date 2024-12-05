@@ -8,3 +8,6 @@
 *_cache/
 notes/
 local/
+docs
+inst/doc
+**/.quarto/

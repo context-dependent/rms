@@ -1,21 +1,6 @@
 library(tidyverse)
 library(readxl)
 
-YEAR <- "23"
-
-p23 <- here::here("data-raw", "rmr-canada-2023-en.xlsx")
-s23 <- readxl::excel_sheets(p23)
-d23 <- readxl::read_excel(p23, sheet = s23[2], skip = 3, col_names = FALSE) |> 
-  select(-where(~is.na(.x[2])))
-
-
-p19 <- here::here("data-raw", "rmr-canada-2019-en.xlsx")
-s19 <- readxl::excel_sheets(p19)
-d19 <- readxl::read_excel(p19, sheet = s19[1], skip = 3, col_names = FALSE) |> 
-  select(-where(~is.na(.x[2])))
-
-d19 |> View()
-
 fill_forward <- function(x) {
   x_ <- x
   for (i in seq_along(x_)) {
@@ -144,62 +129,6 @@ read_rms_yrs <- function(yys) {
     dplyr::ungroup()
 }
 
-rms_t1 <- read_rms_yrs(19:23)
+rmr_t1 <- read_rms_yrs(19:23)
 
-rms_t1 |> count(year)
-rms_t1 |> 
-  arrange(centre, year) |> select(matches("amr"))
-
-local_theme <- function() {
-  bptheme::theme_blueprint(
-    plot_background = "white", 
-    base_size = 14, 
-    strip_text_size = 14
-  )
-}
-
-rms_t1 |> 
-  filter(centre |> str_detect(province), year == 2018) |> 
-  arrange(amr_2br) |> 
-  mutate(centre = fct_inorder(centre)) |>  
-  ggplot(aes(amr_2br, centre)) + 
-  geom_col(aes(fill = centre |> str_detect("Ontario"))) + 
-  geom_text(aes(x = 4, label = scales::dollar(amr_2br)), hjust = 0, size = 14, size.unit = "pt", colour = "white") +
-  bpscales::scale_fill_blueprint(guide = "none", discrete = TRUE, type = "bipolar", option = "blue_green") +
-  scale_x_continuous(labels = scales::dollar_format(accuracy = 1), expand = expansion(mult = c(0, .05))) +
-  local_theme() + 
-  labs(x = "Average Market Rent (2br, 2017)", y = NULL)
-
-rms_t1 |> 
-  filter(year == 2023, centre |> str_detect(province)) |>
-  arrange(amr_2br_indexed_17) |> 
-  mutate(centre = fct_inorder(centre)) |>  
-  ggplot(aes(amr_2br_indexed_17 - 100, centre)) + 
-  geom_col(aes(fill = centre |> str_detect("Ontario"))) + 
-  geom_text(aes(x = 1, label = scales::percent(amr_2br_indexed_17 - 100, scale = 1, accuracy = 1)), hjust = 0, size = 14, size.unit = "pt", colour = "white") +
-  bpscales::scale_fill_blueprint(guide = "none", discrete = TRUE, type = "bipolar", option = "blue_green") + 
-  scale_x_continuous(labels = scales::percent_format(scale = 1, accuracy = 1), expand = expansion(mult = c(0, .05))) + 
-  local_theme() + 
-  labs(x = "AMR Growth (2017-23)", y = NULL)
-
-rms_t1 |> 
-  filter(year == 2023, province == "Ontario") |>
-  arrange(amr_2br_indexed_17) |> 
-  mutate(centre = fct_inorder(centre)) |>  
-  ggplot(aes(amr_2br_indexed_17 - 100, centre)) + 
-  geom_col(aes(fill = centre |> str_detect("Peterborough"))) + 
-  geom_text(aes(x = 1, label = scales::percent(amr_2br_indexed_17 - 100, scale = 1, accuracy = 1)), hjust = 0, size = 14, size.unit = "pt", colour = "white") +
-  bpscales::scale_fill_blueprint(guide = "none", discrete = TRUE, type = "bipolar", option = "blue_green") + 
-  scale_x_continuous(labels = scales::percent_format(scale = 1, accuracy = 1), expand = expansion(mult = c(0, .05))) + 
-  local_theme()
-
-rms_t1 |>
-  filter(province == "Ontario") |> 
-  ggplot(aes(year, amr_2br_indexed_17)) + 
-  geom_smooth(aes(group = centre, colour = centre == "Peterborough CMA"), alpha = .3, se = FALSE) +
-  bpscales::scale_colour_blueprint(guide = "none", discrete = TRUE, type = "bipolar", option = "blue_green")
-
-rms_t1 |> 
-  filter(province == "Ontario", year %in% c(2018, 2023)) |> 
-  ggplot(aes(year, amr_2br)) + 
-  geom_path(aes(group = centre, colour = centre == "Peterborough CMA"), size = 1) 
+usethis::use_data(rmr_t1, overwrite = TRUE)
