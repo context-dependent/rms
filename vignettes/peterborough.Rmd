@@ -26,6 +26,12 @@ local_theme <- function() {
 
 ```
 
+## Overview
+
+Over the past five years, renting an apartment in Peterborough has become dramatically less affordable. 
+
+Though prices have increased, low vacancy rates suggests that demand has grown faster than supply and that rents are likely to continue rising.
+ 
 
 ## Data
 
@@ -149,7 +155,7 @@ rmr_t1 |>
   )
 ```
 
-Between 2018 and 2023, rental market turnover slowed down in Peterborough even more than it did in Ontario as a whole. Over the same period, turnover in Peterborough fell from 18% to just 7%, the lowest rate among Ontario CMAs represented in the data.
+Between 2018 and 2023, rental market turnover slowed in Peterborough even more than it did in Ontario as a whole. Over the same period, turnover in Peterborough fell from 18% to just 7%, the lowest rate among Ontario CMAs represented in the data.
 
 ```{r}
 rmr_t1 |> 
@@ -172,4 +178,3 @@ rmr_t1 |>
     values = c(.3, 1)
   )
 ```
-
