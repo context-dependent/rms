@@ -29,9 +29,9 @@ local_theme <- function() {
 ## Overview
 
 Over the past five years, renting an apartment in Peterborough has become dramatically less affordable. 
-
-Though prices have increased, low vacancy rates suggests that demand has grown faster than supply and that rents are likely to continue rising.
- 
+Falling turnover rates (the lowest in the province as of 2023) tell us that more tenants are staying put to preserve their rent control protections. 
+This trend indicates that the rent increases documented in the Rental Market Report (and examined here) understate the market changes experienced by tenants moving to and within Peterborough. 
+Though prices have increased, low vacancy rates suggests that demand has grown faster than supply, that rents will continue rising, and that---without intervention remaining housed in Peterborough will continue to become less affordable over time. 
 
 ## Data
 
@@ -60,7 +60,7 @@ rmr_t1 |>
   labs(x = "Average Market Rent (2br, 2018)", y = NULL)
 ```
 
-Between 2017 and 2023, AMR for an urban two-bedroom apartment in Ontario increased by 37%, tied for the highest proportional increase with Nova Scotia. 
+Between 2017 and 2023, CMHC's fixed-sample AMR for an urban two-bedroom apartment in Ontario increased by 37%, tied for the highest proportional increase with Nova Scotia. 
 
 ```{r}
 rmr_t1 |> 
@@ -96,7 +96,7 @@ rmr_t1 |>
   labs(x = "Average Market Rent (2br, 2018)", y = NULL)
 ```
 
-Between 2017 and 2023, Peterborough's 2-bedroom AMR increased by 42%, the fourth highest proportional increase among Ontario CMAs represented in the data, behind Brantford, Oshawa, and Windsor, and 5ppt higher than the provincial average of 37%. 
+Between 2017 and 2023, Peterborough's fixed-sample 2-bedroom AMR increased by 42%, the fourth highest proportional increase among Ontario CMAs represented in the data, behind Brantford, Oshawa, and Windsor, and 5ppt higher than the provincial average of 37%. 
 
 ```{r}
 rmr_t1 |> 
@@ -155,7 +155,8 @@ rmr_t1 |>
   )
 ```
 
-Between 2018 and 2023, rental market turnover slowed in Peterborough even more than it did in Ontario as a whole. Over the same period, turnover in Peterborough fell from 18% to just 7%, the lowest rate among Ontario CMAs represented in the data.
+Between 2018 and 2023, rental market turnover slowed in Peterborough even more than it did in Ontario as a whole. 
+Over the same period, turnover in Peterborough fell from 18% to just 7%, the lowest rate among Ontario CMAs represented in the data.
 
 ```{r}
 rmr_t1 |> 
