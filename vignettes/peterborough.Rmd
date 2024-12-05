@@ -64,7 +64,11 @@ Between 2017 and 2023, CMHC's fixed-sample AMR for an urban two-bedroom apartmen
 
 ```{r}
 rmr_t1 |> 
-  filter(year == 2023, centre |> str_detect(province)) |>
+  filter(
+    year == 2023, 
+    centre |> str_detect(province)
+    centre |> str_detect("10")
+  ) |>
   arrange(amr_2br_indexed_17) |> 
   mutate(centre = fct_inorder(centre)) |>  
   ggplot(aes(amr_2br_indexed_17 - 100, centre)) + 
