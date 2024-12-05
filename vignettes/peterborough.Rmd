@@ -139,7 +139,7 @@ rmr_t1 |>
   geom_point(aes(colour = centre == "Peterborough CMA"), size = 1) + 
   local_theme() + 
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +  
-  bpscales::scale_colour_blueprint(
+  bpscales::scale_color_blueprint(
     discrete = TRUE, 
     type = "bipolar", 
     option = "blue_coral"
@@ -163,7 +163,7 @@ rmr_t1 |>
   geom_point(aes(colour = centre == "Peterborough CMA"), size = 1) + 
   local_theme() + 
   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +  
-  bpscales::scale_colour_blueprint(
+  bpscales::scale_color_blueprint(
     discrete = TRUE, 
     type = "bipolar", 
     option = "blue_coral"
